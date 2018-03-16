@@ -1,3 +1,7 @@
+const DEFAULT_CONFIG = {
+    videoElement: null
+}
+
 function draw(video, context, buffer, width, height) {
     buffer.drawImage(video, 0, 0, width, height);
     const imageData = buffer.getImageData(0, 0, width, height);
@@ -21,26 +25,41 @@ function render($canvas) {
     document.body.appendChild($preview);
 }
 
-function showMiniPlayer($video) {
-    const $canvas = document.createElement('canvas');
-    const $buffer = document.createElement('canvas');
-    const canvasContext = $canvas.getContext('2d');
-    const bufferContext = $buffer.getContext('2d');
-
-    const width = $video.clientWidth;
-    const height = $video.clientHeight;
-
-    $canvas.width = width;
-    $canvas.height = height;
-    $buffer.width = width;
-    $buffer.height = height;
-
-    draw($video, canvasContext, bufferContext, width, height);
-
-    render($canvas);
+function buildConfig(options) {
+    const config = Object.assign({}, DEFAULT_CONFIG, options);
+    const entries = Object.entries(config);
+    return new Map(entries);
 }
 
 // Expose API
-module.exports = {
-    show($video) { return showMiniPlayer($video); }
+export class MiniVideoPlayback {
+
+    constructor(options) {
+        this.config = buildConfig(options);
+    }
+
+    show() {
+        const $video = this.config.get('videoElement');
+
+        if (!($video instanceof HTMLVideoElement)) {
+            throw new Error(`The videoElement option must be HTMLVideoElement`);
+        }
+
+        const $canvas = document.createElement('canvas');
+        const $buffer = document.createElement('canvas');
+        const canvasContext = $canvas.getContext('2d');
+        const bufferContext = $buffer.getContext('2d');
+
+        const width = $video.clientWidth;
+        const height = $video.clientHeight;
+
+        $buffer.width = width;
+        $buffer.height = height;
+        $canvas.width = width
+        $canvas.height = height;
+
+        draw($video, canvasContext, bufferContext, width, height);
+        render($canvas); 
+    }
+
 };
