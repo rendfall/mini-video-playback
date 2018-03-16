@@ -1,0 +1,22 @@
+{
+    "name": "mini-video-playback",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "rollup ./src/main.js --output.format iife --output.file ./build/bundle.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rendfall/mini-video-playback.git"
+    },
+    "author": "rendfall",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/rendfall/mini-video-playback/issues"
+    },
+    "homepage": "https://github.com/rendfall/mini-video-playback#readme",
+    "devDependencies": {
+        "rollup": "^0.57.0"
+    }
+}
