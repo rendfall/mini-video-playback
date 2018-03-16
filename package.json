@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "rollup ./src/main.js --output.format iife --output.file ./build/bundle.js"
+        "build": "rollup ./src/main.js --output.format iife --output.file ./build/bundle.js",
+        "dev": "npm run build -- --watch"
     },
     "repository": {
         "type": "git",
