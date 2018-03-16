@@ -20,8 +20,7 @@ function render($canvas) {
     document.body.appendChild($preview);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const $video = document.querySelector('video');
+function showMiniPlayer($video) {
     const $canvas = document.createElement('canvas');
     const $buffer = document.createElement('canvas');
     const canvasContext = $canvas.getContext('2d');
@@ -38,4 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     draw($video, canvasContext, bufferContext, width, height);
 
     render($canvas);
-}, false);
+}
+
+// Expose API
+module.exports = {
+    show($video) { return showMiniPlayer($video); }
+};
