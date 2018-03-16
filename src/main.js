@@ -14,6 +14,7 @@ function render($canvas) {
     $preview.style.right = '15px';
     $preview.style.width = '480px';
     $preview.style.height = '270px';
+    $preview.style.zIndex = '2147483647';
 
     $preview.appendChild($canvas);
 
