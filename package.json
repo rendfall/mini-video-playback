@@ -1,8 +1,8 @@
 {
     "name": "mini-video-playback",
     "version": "0.1.0",
-    "description": "",
-    "main": "index.js",
+    "description": "Make the video pop out so that you could move it wherever you like",
+    "main": "src/main.js",
     "scripts": {
         "build": "webpack",
         "dev": "webpack --watch"
@@ -11,11 +11,25 @@
         "type": "git",
         "url": "git+https://github.com/rendfall/mini-video-playback.git"
     },
-    "author": "rendfall",
+
+    "author": {
+        "name": "rendfall",
+        "email": "rendfall@gmail.com",
+        "url": "http://rendfall.pl"
+    },
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/rendfall/mini-video-playback/issues"
     },
+    "keywords": [
+        "mini",
+        "video",
+        "playback",
+        "player",
+        "media",
+        "playing",
+        "preview"
+    ],
     "homepage": "https://github.com/rendfall/mini-video-playback#readme",
     "devDependencies": {
         "webpack": "^4.1.1",
