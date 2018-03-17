@@ -1,7 +1,7 @@
 const DEFAULT_CONFIG = {
     width: 480,
     height: 270
-}
+};
 
 function buildPreview() {
     const $preview = document.createElement('div');
@@ -42,7 +42,7 @@ class Loop {
         this.step = () => {
             fn.call(fn);
             this.id = window.requestAnimationFrame(this.step);
-        }
+        };
         this.step();
     }
 
@@ -106,4 +106,4 @@ export class MiniVideoPlayback {
             this.$preview = null;
         }
     }
-};
+}
