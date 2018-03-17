@@ -30,6 +30,10 @@ Show floating playback preview
 
 Hide floating playback preview
 
+## Changelog
+
+All changes are listed [here](./CHANGELOG.md)
+
 ## License
 
 [The MIT License](http://rendfall.mit-license.org) @ 2018
