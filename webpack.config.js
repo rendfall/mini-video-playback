@@ -10,7 +10,7 @@ module.exports = {
         libraryTarget: 'umd',
         filename: 'mini-video-playback.js',
         umdNamedDefine: true,
-        path: path.join(__dirname, 'lib')
+        path: path.join(__dirname, 'dist')
     },
 
     module: {
