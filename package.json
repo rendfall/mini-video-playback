@@ -1,6 +1,6 @@
 {
     "name": "mini-video-playback",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Make the video pop out so that you could move it wherever you like",
     "main": "src/main.js",
     "scripts": {
@@ -11,7 +11,6 @@
         "type": "git",
         "url": "git+https://github.com/rendfall/mini-video-playback.git"
     },
-
     "author": {
         "name": "rendfall",
         "email": "rendfall@gmail.com",
