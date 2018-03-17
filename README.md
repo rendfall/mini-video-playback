@@ -1,4 +1,6 @@
-# Mini Video Playback
+# Mini Video Playback ([npm](https://www.npmjs.com/package/mini-video-playback))
+
+[![npm version](https://badge.fury.io/js/mini-video-playback.svg)](https://badge.fury.io/js/mini-video-playback)
 
 > Make the video pop out so that you could move it wherever you like.
 
