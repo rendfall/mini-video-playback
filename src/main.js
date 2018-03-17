@@ -1,5 +1,6 @@
 const DEFAULT_CONFIG = {
-    videoElement: null
+    width: 480,
+    height: 270
 }
 
 function buildPreview() {
@@ -21,7 +22,7 @@ function draw(video, context, buffer, width, height) {
     context.putImageData(imageData, 0, 0);
 }
 
-function render($target, $source) {
+function render($source, $target) {
     $target.appendChild($source);
     document.body.appendChild($target);
 }
@@ -52,39 +53,46 @@ class Loop {
 
 // Expose API
 export class MiniVideoPlayback {
+    constructor($video, options = {}) {
+        if (!($video instanceof HTMLVideoElement)) {
+            throw new Error(`First argument must be a HTMLVideoElement`);
+        }
 
-    constructor(options) {
+        this.$video = $video;
         this.$preview = buildPreview();
         this.config = buildConfig(options);
         this.loop = new Loop();
+        this.setupCanvas();
+        this.setupBuffer();
+        render(this.$canvas, this.$preview);
+    }
+
+    setupCanvas() {
+        const $canvas = document.createElement('canvas');
+        $canvas.width = this.config.get('width');
+        $canvas.height = this.config.get('height');
+        this.$canvas = $canvas;
+    }
+
+    setupBuffer() {
+        const $buffer = document.createElement('canvas');
+        $buffer.width = this.config.get('width');
+        $buffer.height = this.config.get('height');
+        this.$buffer = $buffer;
     }
 
     show() {
-        const $video = this.config.get('videoElement');
-        const $preview = this.$preview;
-
-        if (!($video instanceof HTMLVideoElement)) {
-            throw new Error(`The videoElement option must be HTMLVideoElement`);
-        }
-
-        const $canvas = document.createElement('canvas');
-        const $buffer = document.createElement('canvas');
+        const { $video, $buffer, $canvas } = this;
         const canvasContext = $canvas.getContext('2d');
         const bufferContext = $buffer.getContext('2d');
+        const width = this.config.get('width');
+        const height = this.config.get('height');
 
-        const width = $video.clientWidth;
-        const height = $video.clientHeight;
-
-        $buffer.width = width;
-        $buffer.height = height;
-        $canvas.width = width
-        $canvas.height = height;
+        this.$preview.style.display = 'block';
 
         this.loop.start(() => {
             draw($video, canvasContext, bufferContext, width, height);
         });
-
-        render($preview, $canvas); 
     }
 
     hide() {
