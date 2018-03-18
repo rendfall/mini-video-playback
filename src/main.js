@@ -1,3 +1,5 @@
+import { Dragger } from './dragger';
+
 const DEFAULT_CONFIG = {
     width: 480,
     height: 270
@@ -12,6 +14,8 @@ function buildPreview() {
     $preview.style.width = '480px';
     $preview.style.height = '270px';
     $preview.style.zIndex = '2147483647';
+
+    Dragger.initialize($preview);
 
     return $preview;
 }
@@ -102,7 +106,7 @@ export class MiniVideoPlayback {
 
     destroy() {
         if (this.$preview) {
-            this.preview.remove();
+            this.$preview.remove();
             this.$preview = null;
         }
     }
