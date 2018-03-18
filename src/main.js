@@ -1,5 +1,6 @@
 import { DEFAULTS } from './defaults';
 import { Dragger } from './dragger';
+import { Loop } from './loop';
 
 function buildPreview() {
     const $preview = document.createElement('div');
@@ -33,24 +34,6 @@ function buildConfig(options) {
     const config = Object.assign({}, DEFAULTS, options);
     const entries = Object.entries(config);
     return new Map(entries);
-}
-
-class Loop {
-    constructor() {
-        this.id = null;
-    }
-
-    start(fn) {
-        this.step = () => {
-            fn.call(fn);
-            this.id = window.requestAnimationFrame(this.step);
-        };
-        this.step();
-    }
-
-    stop() {
-        window.cancelAnimationFrame(this.id);
-    }
 }
 
 // Expose API
