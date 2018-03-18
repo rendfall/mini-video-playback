@@ -2,23 +2,6 @@ import { DEFAULTS } from './defaults';
 import { Dragger } from './dragger';
 import { Loop } from './loop';
 
-function buildPreview() {
-    const $preview = document.createElement('div');
-
-    $preview.style.position = 'fixed';
-    $preview.style.top = '15px';
-    $preview.style.right = '15px';
-    $preview.style.width = `${DEFAULTS.width}px`;
-    $preview.style.height = `${DEFAULTS.height}px`;
-    $preview.style.zIndex = '2147483647';
-
-    if (DEFAULTS.movable) {
-        Dragger.initialize($preview, DEFAULTS.parentElement);
-    }
-
-    return $preview;
-}
-
 function draw(video, context, buffer, width, height) {
     buffer.drawImage(video, 0, 0, width, height);
     const imageData = buffer.getImageData(0, 0, width, height);
@@ -43,13 +26,35 @@ export class MiniVideoPlayback {
             throw new Error(`First argument must be a HTMLVideoElement`);
         }
 
-        this.$video = $video;
-        this.$preview = buildPreview();
         this.config = buildConfig(options);
+        this.$video = $video;
         this.loop = new Loop();
         this.setupCanvas();
         this.setupBuffer();
+        this.setupPreview();
+
         render(this.$canvas, this.$preview);
+    }
+
+    setupPreview() {
+        const width = this.config.get('width');
+        const height = this.config.get('height');
+        const isMovable = this.config.get('movable');
+        const $parentElement = this.config.get('parentElement');
+        const $preview = document.createElement('div');
+
+        $preview.style.position = 'fixed';
+        $preview.style.top = '15px';
+        $preview.style.right = '15px';
+        $preview.style.width = `${width}px`;
+        $preview.style.height = `${height}px`;
+        $preview.style.zIndex = '2147483647';
+
+        if (isMovable) {
+            Dragger.initialize($preview, $parentElement);
+        }
+
+        this.$preview = $preview;
     }
 
     setupCanvas() {
