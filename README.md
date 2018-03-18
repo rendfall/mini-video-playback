@@ -17,10 +17,35 @@ $ npm install mini-video-playback
 ```javascript
 document.addEventListener('DOMContentLoaded', () => {
     const videoTagElementRef = document.querySelector('video');
-    const miniVideoPlayback = new MiniVideoPlayback(videoTagElementRef);
+    const miniVideoPlayback = new MiniVideoPlayback(videoTagElementRef, {
+        width: 480,
+        height: 270
+    });
     miniVideoPlayback.show();
 }, false);
 ```
+
+## Options
+
+#### `width` [number]
+
+Set preview width (in `px` units)
+> Default: 480px
+
+#### `height` [number]
+
+Set preview height (in `px` units)
+> Default: 270px
+
+#### `movable` [boolean]
+
+Allow to drag element
+> Default: true
+
+#### `parentElement` [HTMLElement]
+
+Point parent element where preview will be embeded
+> Default: document.body
 
 ## API
 
