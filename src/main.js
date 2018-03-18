@@ -1,9 +1,5 @@
+import { DEFAULTS } from './defaults';
 import { Dragger } from './dragger';
-
-const DEFAULT_CONFIG = {
-    width: 480,
-    height: 270
-};
 
 function buildPreview() {
     const $preview = document.createElement('div');
@@ -11,11 +7,13 @@ function buildPreview() {
     $preview.style.position = 'fixed';
     $preview.style.top = '15px';
     $preview.style.right = '15px';
-    $preview.style.width = '480px';
-    $preview.style.height = '270px';
+    $preview.style.width = `${DEFAULTS.width}px`;
+    $preview.style.height = `${DEFAULTS.height}px`;
     $preview.style.zIndex = '2147483647';
 
-    Dragger.initialize($preview);
+    if (DEFAULTS.movable) {
+        Dragger.initialize($preview, DEFAULTS.parentElement);
+    }
 
     return $preview;
 }
@@ -32,7 +30,7 @@ function render($source, $target) {
 }
 
 function buildConfig(options) {
-    const config = Object.assign({}, DEFAULT_CONFIG, options);
+    const config = Object.assign({}, DEFAULTS, options);
     const entries = Object.entries(config);
     return new Map(entries);
 }
