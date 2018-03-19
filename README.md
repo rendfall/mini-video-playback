@@ -57,6 +57,13 @@ Show floating playback preview
 
 Hide floating playback preview
 
+## Troubleshooting
+
+#### Cross-Origin Resource Sharing (CORS)
+
+Due to CORS you have to provide video resource locally or
+from server with proper `Access-Control-Allow-Origin` header.
+
 ## Changelog
 
 All changes are listed [here](./CHANGELOG.md)
