@@ -1,6 +1,6 @@
 {
     "name": "mini-video-playback",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Make the video pop out so that you could move it wherever you like",
     "main": "src/main.js",
     "scripts": {
