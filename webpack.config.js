@@ -17,12 +17,12 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                use: [{
+                use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env']
+                        presets: ['@babel/preset-env']
                     }
-                }],
+                },
                 include: path.join(__dirname, 'src')
             }
         ]
