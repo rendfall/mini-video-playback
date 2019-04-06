@@ -19,8 +19,7 @@ function buildConfig(options) {
     return new Map(entries);
 }
 
-// Expose API
-module.exports = class MiniVideoPlayback {
+export default class MiniVideoPlayback {
     constructor($video, options = {}) {
         if (!($video instanceof HTMLVideoElement)) {
             throw new Error(`First argument must be a HTMLVideoElement`);
